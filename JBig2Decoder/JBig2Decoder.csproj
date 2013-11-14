@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8E36A25B-6926-4515-8407-B43D316BEBCE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JBig2Decoder</RootNamespace>
+    <AssemblyName>JBig2Decoder</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WriteableBitmapEx.Wpf">
+      <HintPath>..\..\taglitAPI\packages\WriteableBitmapEx.1.0.8.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Decoders\ArithmeticDecoder.cs" />
+    <Compile Include="Decoders\ArithmeticDecoderStats.cs" />
+    <Compile Include="Decoders\MMRDecoder.cs" />
+    <Compile Include="Images\BitmapPointer.cs" />
+    <Compile Include="Images\JBig2Image.cs" />
+    <Compile Include="Segment\extensions\ExtensionsSegment.cs" />
+    <Compile Include="Segment\Flags.cs" />
+    <Compile Include="Segment\generic\GenericRegionFlags.cs" />
+    <Compile Include="Segment\generic\GenericRegionSegment.cs" />
+    <Compile Include="Segment\halftone\HalftoneRegionFlags.cs" />
+    <Compile Include="Segment\halftone\HalftoneRegionSegment.cs" />
+    <Compile Include="Segment\pageinformation\PageInformationFlags.cs" />
+    <Compile Include="Segment\pageinformation\PageInformationSegment.cs" />
+    <Compile Include="Segment\pattern\PatternDictionaryFlags.cs" />
+    <Compile Include="Segment\pattern\PatternDictionarySegment.cs" />
+    <Compile Include="Segment\refinement\RefinementRegionFlags.cs" />
+    <Compile Include="Segment\refinement\RefinementRegionSegment.cs" />
+    <Compile Include="Segment\region\RegionFlags.cs" />
+    <Compile Include="Segment\region\RegionSegment.cs" />
+    <Compile Include="Segment\region\text\TextRegionFlags.cs" />
+    <Compile Include="Segment\region\text\TextRegionHuffmanFlags.cs" />
+    <Compile Include="Segment\strips\EndOfStripSegment.cs" />
+    <Compile Include="Segment\symboldictionary\SymbolDictionaryFlags.cs" />
+    <Compile Include="Segment\region\text\TextRegionSegment.cs" />
+    <Compile Include="Utilities\BinaryOperation.cs" />
+    <Compile Include="Decoders\DecodeIntResult.cs" />
+    <Compile Include="Decoders\HuffmanDecoder.cs" />
+    <Compile Include="JBIG2StreamDecoder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Segment.cs" />
+    <Compile Include="SegmentHeader.cs" />
+    <Compile Include="Segment\symboldictionary\SymbolDictionarySegment.cs" />
+    <Compile Include="Utilities\FastBitSet.cs" />
+    <Compile Include="Utilities\Helpers.cs" />
+    <Compile Include="Utilities\StreamReader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
