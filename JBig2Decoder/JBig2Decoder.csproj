@@ -52,6 +52,7 @@
     <Compile Include="Decoders\MMRDecoder.cs" />
     <Compile Include="Images\BitmapPointer.cs" />
     <Compile Include="Images\JBig2Image.cs" />
+    <Compile Include="ResizeHelpers.cs" />
     <Compile Include="Segment\extensions\ExtensionsSegment.cs" />
     <Compile Include="Segment\Flags.cs" />
     <Compile Include="Segment\generic\GenericRegionFlags.cs" />

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Runtime.InteropServices.WindowsRuntime;
 namespace JBig2Decoder
 {
+    public enum ImageFormat{JPEG,TIFF}
     public class JBIG2StreamDecoder
     {
         public static bool debug = false;
@@ -33,7 +34,7 @@ namespace JBig2Decoder
         {
             globalData = data;
         }
-        public byte[] decodeJBIG2(byte[] data)
+        public byte[] decodeJBIG2(byte[] data, ImageFormat format= ImageFormat.TIFF , int? NewWidth=null, int? NewHeight=null)
         {
             reader = new Big2StreamReader(data);
             resetDecoder();
@@ -112,12 +113,26 @@ namespace JBig2Decoder
             int stride = (width * 1 + 7) / 8;
          
             var bitmap = new WriteableBitmap(width, height, 96, 96, System.Windows.Media.PixelFormats.BlackWhite, null);
-            bitmap.WritePixels(new System.Windows.Int32Rect(0, 0, width, height), newarray, stride, 0);     
+            bitmap.WritePixels(new System.Windows.Int32Rect(0, 0, width, height), newarray, stride, 0);          
 
             MemoryStream stream3 = new MemoryStream();
-            var encoder = new TiffBitmapEncoder ();
-            encoder.Frames.Add(BitmapFrame.Create(bitmap));
-            encoder.Save(stream3);
+            if (format == ImageFormat.TIFF) {
+                var encoder = new TiffBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmap));
+                encoder.Save(stream3);
+            }
+            else if (format == ImageFormat.JPEG)
+            {
+                var encoder = new JpegBitmapEncoder();             
+                encoder.Frames.Add(BitmapFrame.Create(bitmap));
+                encoder.Save(stream3);
+            }
+
+            if (NewWidth != null && NewHeight!=null) {
+                var newbitmap = ResizeHelpers.ScaleImage(stream3.ToArray(), (int)NewWidth,(int)NewHeight);
+                return newbitmap;
+            }
+
             return stream3.ToArray();
         }
 
