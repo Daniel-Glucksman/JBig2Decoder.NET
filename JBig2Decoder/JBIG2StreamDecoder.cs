@@ -34,7 +34,7 @@ namespace JBig2Decoder
         {
             globalData = data;
         }
-        public byte[] decodeJBIG2(byte[] data, ImageFormat format= ImageFormat.TIFF , int? NewWidth=null, int? NewHeight=null)
+        public byte[] decodeJBIG2(byte[] data, ImageFormat format= ImageFormat.TIFF , int NewWidth=0, int NewHeight=0)
         {
             reader = new Big2StreamReader(data);
             resetDecoder();
@@ -128,8 +128,8 @@ namespace JBig2Decoder
                 encoder.Save(stream3);
             }
 
-            if (NewWidth != null && NewHeight!=null) {
-                var newbitmap = ResizeHelpers.ScaleImage(stream3.ToArray(), (int)NewWidth,(int)NewHeight);
+            if (NewWidth != 0 && NewHeight!=0) {
+                var newbitmap = ResizeHelpers.ScaleImage(stream3.ToArray(), NewWidth,NewHeight);
                 return newbitmap;
             }
 
