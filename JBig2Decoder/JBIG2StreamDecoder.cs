@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Runtime.InteropServices.WindowsRuntime;
 namespace JBig2Decoder
 {
-    public enum ImageFormat{JPEG,TIFF}
+    public enum ImageFormat{JPEG,TIFF,PNG}
     public class JBIG2StreamDecoder
     {
         public static bool debug = false;
@@ -124,6 +124,12 @@ namespace JBig2Decoder
             else if (format == ImageFormat.JPEG)
             {
                 var encoder = new JpegBitmapEncoder();             
+                encoder.Frames.Add(BitmapFrame.Create(bitmap));
+                encoder.Save(stream3);
+            }
+            else if (format == ImageFormat.PNG)
+            {
+                var encoder = new PngBitmapEncoder();
                 encoder.Frames.Add(BitmapFrame.Create(bitmap));
                 encoder.Save(stream3);
             }
