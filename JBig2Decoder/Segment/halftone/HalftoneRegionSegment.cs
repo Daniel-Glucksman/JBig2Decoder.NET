@@ -19,7 +19,7 @@ namespace JBig2Decoder
 
         public override void readSegment()
         {
-            readSegment();
+            base.readSegment();
 
             /** read text region Segment flags */
             readHalftoneRegionFlags();
