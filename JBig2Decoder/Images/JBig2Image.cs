@@ -284,7 +284,10 @@ namespace JBig2Decoder
 
                         if (ltp)
                         {
-                            duplicateRow(row, row - 1);
+                            // if the top row needs a predictor, we need to wrap around to the bottom row
+                            int target = row - 1;
+                            if (target < 0) target = (int)(height - 1);
+                            duplicateRow(row, target);
                             continue;
                         }
                     }
